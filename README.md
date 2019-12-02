@@ -1,5 +1,9 @@
 # Currency SPA bult with React
 
+Deployed at https://currency-rates-coversion.netlify.com/
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d33f4b7c-d5b7-4990-8605-724ca4d7628b/deploy-status)](https://app.netlify.com/sites/musing-bhaskara-8f8c60/deploys)
+
 **functionality**
 
 - loads currency rates once an hour
