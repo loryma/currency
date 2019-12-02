@@ -53,7 +53,7 @@ function App() {
         timestampFromStorage && Number(JSON.parse(timestampFromStorage));
 
       if (timestamp && timestamp + 3600 * 1000 > new Date()) {
-        const diff = timestamp + 3600 * 1000 - new Date();
+        // const diff = timestamp + 3600 * 1000 - new Date();
         const ratesFromStorage = localStorage.getItem("rates");
         let rates = JSON.parse(ratesFromStorage);
 
