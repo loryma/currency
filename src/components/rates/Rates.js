@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions";
 import RateRow from "../rateRow/RateRow";
-import Loading from "../HOC/Loading";
+import withLoading from "../HOC/withLoading";
 import withError from "../HOC/withError";
 import classes from "./Rates.module.css";
 
@@ -76,4 +76,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withError(Loading(Rates)));
+)(withError(withLoading(Rates)));

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import * as actions from "../../store/actions";
 import Select from "../Select/Select";
-import Loading from "../HOC/Loading";
+import withLoading from "../HOC/withLoading";
 import withError from "../HOC/withError";
 import classes from "./Convert.module.css";
 
@@ -74,4 +74,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withError(Loading(Convert)));
+)(withError(withLoading(Convert)));

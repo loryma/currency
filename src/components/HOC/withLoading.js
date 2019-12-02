@@ -1,7 +1,7 @@
 import React from "react";
-import "./Loading.css";
+import "./withLoading.css";
 
-const Loading = Component => {
+const withLoading = Component => {
   const Loader = (
     <div class="lds-roller">
       <div></div>
@@ -20,4 +20,4 @@ const Loading = Component => {
   };
 };
 
-export default Loading;
+export default withLoading;
