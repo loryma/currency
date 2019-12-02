@@ -4,9 +4,10 @@
 
 .Heart {
   width: 100%;
-  fill: grey;
+  fill: lightgray;
+  cursor: pointer;
 }
 
 .Heart--red {
-  fill: red;
+  fill: var(--green);
 }

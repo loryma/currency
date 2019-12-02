@@ -13,7 +13,7 @@ const Base = ({ changeBase, currentBase }) => {
   };
   return (
     <div>
-      Select base: <Select value={currentBase} onChange={onChange} />
+      Select base currency: <Select value={currentBase} onChange={onChange} />
     </div>
   );
 };

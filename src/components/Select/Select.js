@@ -4,6 +4,8 @@ import classes from "./Select.module.css";
 const Select = ({ value, onChange }) => {
   return (
     <select className={classes.Select} value={value} onChange={onChange}>
+      <option value="USD">USD</option>
+      <option value="EUR">EUR</option>
       <option value="AUD">AUD</option>
       <option value="BRL">BRL</option>
       <option value="CAD">BRL</option>
@@ -11,7 +13,6 @@ const Select = ({ value, onChange }) => {
       <option value="CNY">CNY</option>
       <option value="CZK">CZK</option>
       <option value="DKK">DKK</option>
-      <option value="EUR">EUR</option>
       <option value="GBP">GBP</option>
       <option value="HKD">HKD</option>
       <option value="HRK">HRK</option>
@@ -34,7 +35,6 @@ const Select = ({ value, onChange }) => {
       <option value="SGD">SGD</option>
       <option value="THB">THB</option>
       <option value="TRY">TRY</option>
-      <option value="USD">USD</option>
       <option value="ZAR">ZAR</option>
     </select>
   );

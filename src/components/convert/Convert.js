@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import * as actions from "../../store/actions";
 import Select from "../Select/Select";
 import Loading from "../HOC/Loading";
+import withError from "../HOC/withError";
 import classes from "./Convert.module.css";
 
 const Convert = ({ convertCurrency }) => {
@@ -53,16 +54,24 @@ const Convert = ({ convertCurrency }) => {
         />
       </div>
 
-      <button type="submit">Convert </button>
+      <button className={classes.Submit} type="submit">
+        Convert{" "}
+      </button>
     </form>
   );
 };
 
-const mapStateToProps = state => ({ isLoading: state.convert.isLoading });
+const mapStateToProps = state => ({
+  isLoading: state.convert.isLoading,
+  error: state.convert.error
+});
 
 const mapDispatchToProps = dispatch => ({
   convertCurrency: (to, from, amount) =>
     dispatch(actions.convertCurrency(to, from, amount))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Loading(Convert));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withError(Loading(Convert)));

@@ -1,3 +1,11 @@
 .Rates {
-  padding: 1em 0;
+  padding: 2em 0;
+}
+
+.Header {
+  display: flex;
+  justify-content: space-between;
+  height: 3em;
+  color: var(--green);
+  font-weight: bold;
 }

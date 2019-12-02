@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import * as actions from "../../store/actions";
 import RateRow from "../rateRow/RateRow";
 import Loading from "../HOC/Loading";
+import withError from "../HOC/withError";
 import classes from "./Rates.module.css";
 
 const Rates = ({ rates, pinned, togglePinned }) => {
@@ -13,16 +14,26 @@ const Rates = ({ rates, pinned, togglePinned }) => {
   useEffect(() => {
     localStorage.setItem("pinned", JSON.stringify(pinned));
   }, [pinned]);
-  const ratesContent = rates.map(([symbol, rate]) => (
+  const ratesContent = rates.map(([symbol, rate], i) => (
     <RateRow
       key={symbol}
       symbol={symbol}
       rate={rate}
+      even={i % 2}
       pinned={pinned.includes(symbol)}
       onPin={onPinChange.bind(this, symbol)}
     />
   ));
-  return <div className={classes.Rates}>{ratesContent}</div>;
+  return (
+    <div className={classes.Rates}>
+      <header className={classes.Header}>
+        <div>Currency</div>
+        <div>Rate</div>
+        <div>Favourite</div>
+      </header>
+      {ratesContent}
+    </div>
+  );
 };
 
 const mapStateToProps = state => {
@@ -62,4 +73,7 @@ const mapDispatchToProps = dispatch => ({
   togglePinned: symbol => dispatch(actions.togglePinned(symbol))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Loading(Rates));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withError(Loading(Rates)));

@@ -3,3 +3,18 @@
   flex-direction: column;
   height: 100%;
 }
+
+.Header {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: lightgrey;
+  padding: 0 0 1.6em 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  .Header {
+    font-size: 1.8em;
+  }
+}

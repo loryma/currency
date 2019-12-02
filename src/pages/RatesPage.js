@@ -6,6 +6,7 @@ import classes from "./Page.module.css";
 const RatesPage = () => {
   return (
     <div className={classes.Page}>
+      <header className={classes.Header}>Currency rates</header>
       <Base />
       <Rates />
     </div>

@@ -2,9 +2,12 @@ import React from "react";
 import classes from "./RateRow.module.css";
 import Pin from "../Pin/Pin";
 
-const rateRow = ({ symbol, rate, pinned, onPin }) => {
+const RateRow = ({ symbol, rate, pinned, onPin, even }) => {
+  const rateRowClassess = [classes.RateRow, even ? classes.Even : " "].join(
+    " "
+  );
   return (
-    <div className={classes.RateRow}>
+    <div className={rateRowClassess}>
       <div>{symbol}</div>
       <div>{rate}</div>
       <Pin onClick={onPin} pinned={pinned} />
@@ -12,4 +15,4 @@ const rateRow = ({ symbol, rate, pinned, onPin }) => {
   );
 };
 
-export default rateRow;
+export default RateRow;

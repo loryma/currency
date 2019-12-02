@@ -6,6 +6,7 @@ import classes from "./Page.module.css";
 const ConvertPage = () => {
   return (
     <div className={classes.Page}>
+      <header className={classes.Header}>convert currency</header>
       <Convert />
       <ConvertResult />
     </div>

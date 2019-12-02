@@ -1,4 +1,12 @@
 .RateRow {
   display: flex;
   justify-content: space-between;
+  height: 2em;
+  line-height: 2em;
+  background-color: rgba(128, 128, 128, 0.5);
+  padding: 0 1em;
+}
+
+.Even {
+  background-color: transparent;
 }
