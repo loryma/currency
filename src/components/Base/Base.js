@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions";
 import Select from "../Select/Select";
 
 const Base = ({ changeBase, currentBase }) => {
+  useEffect(() => {
+    localStorage.setItem("base", currentBase);
+  }, [currentBase]);
   const onChange = e => {
     const value = e.target.value;
     changeBase(value);

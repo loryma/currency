@@ -11,7 +11,6 @@ const Rates = ({ rates, pinned, togglePinned }) => {
 
   useEffect(() => {
     localStorage.setItem("pinned", JSON.stringify(pinned));
-    console.log("pinned");
   }, [pinned]);
   const ratesContent = rates.map(([symbol, rate]) => (
     <RateRow
