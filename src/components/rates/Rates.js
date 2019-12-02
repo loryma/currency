@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions";
 import RateRow from "../rateRow/RateRow";
+import Loading from "../HOC/Loading";
 import classes from "./Rates.module.css";
 
 const Rates = ({ rates, pinned, togglePinned }) => {
@@ -44,13 +45,21 @@ const mapStateToProps = state => {
       ) || [];
 
     const rates = [...pinned, ...notPinned];
-    return { rates, pinned: state.rates.pinned };
+    return {
+      rates,
+      pinned: state.rates.pinned,
+      isLoading: state.rates.isLoading
+    };
   }
-  return { rates: [], pinned: state.rates.pinned };
+  return {
+    rates: [],
+    pinned: state.rates.pinned,
+    isLoading: state.rates.isLoading
+  };
 };
 
 const mapDispatchToProps = dispatch => ({
   togglePinned: symbol => dispatch(actions.togglePinned(symbol))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Rates);
+export default connect(mapStateToProps, mapDispatchToProps)(Loading(Rates));

@@ -5,7 +5,7 @@ import Select from "../Select/Select";
 
 const Base = ({ changeBase, currentBase }) => {
   useEffect(() => {
-    localStorage.setItem("base", currentBase);
+    localStorage.setItem("base", JSON.stringify(currentBase));
   }, [currentBase]);
   const onChange = e => {
     const value = e.target.value;

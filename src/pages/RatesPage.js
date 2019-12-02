@@ -1,10 +1,11 @@
 import React from "react";
 import Rates from "../components/rates/Rates";
 import Base from "../components/Base/Base";
+import classes from "./Page.module.css";
 
 const RatesPage = () => {
   return (
-    <div>
+    <div className={classes.Page}>
       <Base />
       <Rates />
     </div>

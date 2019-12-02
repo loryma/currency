@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 
 import * as actions from "../../store/actions";
 import Select from "../Select/Select";
+import Loading from "../HOC/Loading";
+import classes from "./Convert.module.css";
 
 const Convert = ({ convertCurrency }) => {
   const [field, setField] = useState({ from: "EUR", to: "USD" });
@@ -30,10 +32,27 @@ const Convert = ({ convertCurrency }) => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <Select value={field.from} onChange={onFieldChange.bind(this, "from")} />
-      <Select value={field.to} onChange={onFieldChange.bind(this, "to")} />
-      <input value={amount} onChange={onAmountChange} />
+    <form className={classes.Convert} onSubmit={onSubmit}>
+      <div className={classes.Row}>
+        <label className={classes.Label}>From:</label>
+        <Select
+          value={field.from}
+          onChange={onFieldChange.bind(this, "from")}
+        />
+      </div>
+      <div className={classes.Row}>
+        <label className={classes.Label}>To:</label>
+        <Select value={field.to} onChange={onFieldChange.bind(this, "to")} />
+      </div>
+      <div className={classes.Row}>
+        <label className={classes.Label}>Amount:</label>
+        <input
+          className={classes.Input}
+          value={amount}
+          onChange={onAmountChange}
+        />
+      </div>
+
       <button type="submit">Convert </button>
     </form>
   );
@@ -46,4 +65,4 @@ const mapDispatchToProps = dispatch => ({
     dispatch(actions.convertCurrency(to, from, amount))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Convert);
+export default connect(mapStateToProps, mapDispatchToProps)(Loading(Convert));

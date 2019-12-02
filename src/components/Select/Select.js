@@ -1,8 +1,9 @@
 import React from "react";
+import classes from "./Select.module.css";
 
 const Select = ({ value, onChange }) => {
   return (
-    <select value={value} onChange={onChange}>
+    <select className={classes.Select} value={value} onChange={onChange}>
       <option value="AUD">AUD</option>
       <option value="BRL">BRL</option>
       <option value="CAD">BRL</option>

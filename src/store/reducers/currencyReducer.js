@@ -4,7 +4,7 @@ const initialState = {
   base: "USD",
   rates: null,
   pinned: ["EUR"],
-  isLoadin: false,
+  isLoading: false,
   error: null
 };
 

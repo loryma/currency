@@ -24,7 +24,7 @@ function getSavedState() {
       base: "USD",
       pinned: ["EUR"],
       rates: null,
-      isLoaing: false,
+      isLodaing: false,
       error: null
     },
     convert: { isLoading: false, error: false, value: null }
@@ -46,32 +46,41 @@ const store = createStore(rootReducer, savedState, applyMiddleware(thunk));
 
 function App() {
   useEffect(() => {
+    let timer;
     try {
       const timestampFromStorage = localStorage.getItem("timestamp");
       const timestamp =
         timestampFromStorage && Number(JSON.parse(timestampFromStorage));
 
-      if (timestamp && timestamp + 7200 * 1000 > new Date()) {
+      if (timestamp && timestamp + 3600 * 1000 > new Date()) {
+        const diff = timestamp + 3600 * 1000 - new Date();
         const ratesFromStorage = localStorage.getItem("rates");
         let rates = JSON.parse(ratesFromStorage);
 
         store.dispatch(actions.fetchRatesSuccess(rates));
 
-        console.log("get from storage");
+        timer = setInterval(fetchRates, 3600 * 1000);
       } else {
-        store.dispatch(actions.fetchRates()).then(() => {
-          localStorage.setItem(
-            "rates",
-            JSON.stringify(store.getState().rates.rates)
-          );
-          localStorage.setItem("timestamp", JSON.stringify(+new Date()));
-          console.log("write t storage");
-        });
+        fetchRates().finally(
+          res => (timer = setInterval(fetchRates, 3600 * 1000))
+        );
       }
     } catch (error) {
       console.log(error);
     }
+    return () => clearInterval(timer);
   }, []);
+
+  function fetchRates() {
+    return store.dispatch(actions.fetchRates()).then(() => {
+      localStorage.setItem(
+        "rates",
+        JSON.stringify(store.getState().rates.rates)
+      );
+      localStorage.setItem("timestamp", JSON.stringify(+new Date()));
+      console.log("write t storage");
+    });
+  }
 
   return (
     <Provider store={store}>
