@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./RateRow.module.css";
+import classes from "./rateRow.module.css";
 import Pin from "../Pin/Pin";
 
 const RateRow = ({ symbol, rate, pinned, onPin, even }) => {
