@@ -31,7 +31,7 @@ function App() {
 
       let rates = JSON.parse(ratesFromStorage);
       store.dispatch(actions.fetchRatesSuccess(rates));
-      console.log("storage");
+      console.log("storage", rates);
     } else {
       store.dispatch(actions.fetchRates()).then(() => {
         localStorage.setItem(

@@ -12,18 +12,14 @@ export const fetchRatesError = error => ({
   error
 });
 
-export const fetchRates = base => {
-  console.log("start");
+export const fetchRates = () => {
   return dispatch => {
     dispatch(fetchRatesStart());
-
     return axios
-      .get(
-        `http://data.fixer.io/api/latest?&access_key=c24e8f7ae45ef9da41722ded37fc3394`
-      )
+      .get(`https://api.exchangeratesapi.io/latest?base=USD`)
       .then(res => {
         console.log(res);
-        if (res.data.success) {
+        if (res.data.rates) {
           const { rates } = res.data;
           dispatch(fetchRatesSuccess(rates));
         }

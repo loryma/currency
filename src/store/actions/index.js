@@ -1,1 +1,6 @@
-export { fetchRates, fetchRatesSuccess, convertCurrency } from "./actions";
+export {
+  fetchRates,
+  fetchRatesSuccess,
+  convertCurrency,
+  changeBase
+} from "./actions";

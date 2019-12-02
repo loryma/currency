@@ -1,6 +1,6 @@
 const initialState = {
   base: "USD",
-  rates: {}
+  rates: null
 };
 
 function currencyReducer(state = initialState, action) {

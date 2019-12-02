@@ -11,6 +11,23 @@ const Rates = ({ rates }) => {
   return <div className={classes.Rates}>{ratesContent}</div>;
 };
 
-const mapStateToProps = state => ({ rates: Object.entries(state.rates.rates) });
+const mapStateToProps = state => {
+  const originalRates = { ...state.rates.rates };
+  if (originalRates) {
+    const ratio = 1.0 / originalRates[state.rates.base];
+    console.log(
+      ratio,
+      originalRates,
+      state.rates.base,
+      originalRates[state.rates.base]
+    );
+    const rates = Object.entries(originalRates).map(([_, value]) => [
+      _,
+      (value * ratio).toFixed(4)
+    ]);
+    return { rates };
+  }
+  return { rates: {} };
+};
 
 export default connect(mapStateToProps)(Rates);
