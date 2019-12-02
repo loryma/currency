@@ -5,7 +5,7 @@ import * as actions from "../../store/actions";
 import Select from "../Select/Select";
 
 const Convert = ({ convertCurrency }) => {
-  const [field, setField] = useState({ from: "UAH", to: "USD" });
+  const [field, setField] = useState({ from: "EUR", to: "USD" });
   const [amount, setAmount] = useState(100);
 
   const onFieldChange = (name, event) => {

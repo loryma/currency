@@ -58,3 +58,16 @@ export const convertCurrency = (from, to, amount) => {
       });
   };
 };
+
+export const togglePinned = currency => {
+  localStorage.setItem("pinned", JSON.stringify());
+  return {
+    type: actionTypes.TOGGLE_PINNED,
+    currency
+  };
+};
+
+export const setAllPinned = currencies => ({
+  type: actionTypes.SET_ALL_PINNED,
+  currencies
+});

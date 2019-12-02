@@ -1,0 +1,29 @@
+.Navigation {
+  height: 3em;
+  background-color: black;
+}
+
+.Container {
+  width: 80%;
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.Link {
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  height: 100%;
+  line-height: 3em;
+  font-weight: bold;
+  padding: 0 1em;
+  border-right: 1px solid white;
+  border-left: 1px solid white;
+}
+
+.Link + .Link {
+  border-left: none;
+}

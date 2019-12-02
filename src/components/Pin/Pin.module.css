@@ -1,0 +1,12 @@
+.Pin {
+  width: 15px;
+}
+
+.Heart {
+  width: 100%;
+  fill: grey;
+}
+
+.Heart--red {
+  fill: red;
+}

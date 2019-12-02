@@ -10,7 +10,7 @@ const Base = ({ changeBase, currentBase }) => {
   };
   return (
     <div>
-      <Select value={currentBase} onChange={onChange} />
+      Select base: <Select value={currentBase} onChange={onChange} />
     </div>
   );
 };

@@ -2,5 +2,7 @@ export {
   fetchRates,
   fetchRatesSuccess,
   convertCurrency,
-  changeBase
+  changeBase,
+  togglePinned,
+  setAllPinned
 } from "./actions";

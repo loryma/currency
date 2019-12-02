@@ -18,36 +18,66 @@ const rootReducer = combineReducers({
   convert: convertReducer
 });
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+function getSavedState() {
+  let result = {
+    rates: {
+      base: "USD",
+      pinned: ["EUR"],
+      rates: null,
+      isLoaing: false,
+      error: null
+    },
+    convert: { isLoading: false, error: false, value: null }
+  };
+  const base = localStorage.getItem("base");
+  const pinned = localStorage.getItem("pinned");
+  if (base) {
+    result.rates.base = JSON.parse(base);
+  }
+  if (pinned) {
+    result.rates.pinned = JSON.parse(pinned);
+  }
+  return result;
+}
+
+const savedState = getSavedState();
+
+const store = createStore(rootReducer, savedState, applyMiddleware(thunk));
 
 function App() {
   useEffect(() => {
-    const timestampFromStorage = localStorage.getItem("timestamp");
-    const timestamp =
-      timestampFromStorage && Number(JSON.parse(timestampFromStorage));
+    try {
+      const timestampFromStorage = localStorage.getItem("timestamp");
+      const timestamp =
+        timestampFromStorage && Number(JSON.parse(timestampFromStorage));
 
-    if (timestamp && timestamp + 7200 * 1000 > new Date()) {
-      const ratesFromStorage = localStorage.getItem("rates");
+      if (timestamp && timestamp + 7200 * 1000 > new Date()) {
+        const ratesFromStorage = localStorage.getItem("rates");
+        let rates = JSON.parse(ratesFromStorage);
 
-      let rates = JSON.parse(ratesFromStorage);
-      store.dispatch(actions.fetchRatesSuccess(rates));
-      console.log("storage", rates);
-    } else {
-      store.dispatch(actions.fetchRates()).then(() => {
-        localStorage.setItem(
-          "rates",
-          JSON.stringify(store.getState().rates.rates)
-        );
-        localStorage.setItem("timestamp", JSON.stringify(+new Date()));
-      });
+        store.dispatch(actions.fetchRatesSuccess(rates));
+
+        console.log("get from storage");
+      } else {
+        store.dispatch(actions.fetchRates()).then(() => {
+          localStorage.setItem(
+            "rates",
+            JSON.stringify(store.getState().rates.rates)
+          );
+          localStorage.setItem("timestamp", JSON.stringify(+new Date()));
+          console.log("write t storage");
+        });
+      }
+    } catch (error) {
+      console.log(error);
     }
   }, []);
 
   return (
-    <div className="App">
-      <Provider store={store}>
-        <BrowserRouter>
-          <Navigation />
+    <Provider store={store}>
+      <BrowserRouter>
+        <Navigation />
+        <div className="App">
           <Switch>
             <Route path="/convert">
               <ConvertPage />
@@ -56,9 +86,9 @@ function App() {
               <RatesPage />
             </Route>
           </Switch>
-        </BrowserRouter>
-      </Provider>
-    </div>
+        </div>
+      </BrowserRouter>
+    </Provider>
   );
 }
 

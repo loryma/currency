@@ -6,3 +6,6 @@ export const CHANGE_BASE = "CHANGE_BASE";
 export const CONVERT_START = "CONVERT_START";
 export const CONVERT_SUCCESS = "CONVERT_SUCCESS";
 export const CONVERT_ERROR = "CONVERT_ERROR";
+
+export const TOGGLE_PINNED = "ADD_PINNED";
+export const SET_ALL_PINNED = "SET_ALL_PINNED";

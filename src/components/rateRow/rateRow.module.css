@@ -1,3 +1,4 @@
-.rateRow {
+.RateRow {
   display: flex;
+  justify-content: space-between;
 }
